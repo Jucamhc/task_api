@@ -12,6 +12,7 @@ import {
 } from "@nestjs/common";
 import { TasksService } from "./tasks.service";
 import { CreateTaskDto } from "src/dto/create-task.dto";
+import { UpdateTaskDto } from "src/dto/update-task.dto";
 
 @Controller("tasks")
 export class TasksController {
@@ -50,7 +51,7 @@ export class TasksController {
   }
 
   @Put(":id")
-  async update(@Param("id") id: string, @Body() body: CreateTaskDto) {
+  async update(@Param("id") id: string, @Body() body: UpdateTaskDto) {
     const task = await this.tasksSevice.update(id, body);
     if (!task) return new NotFoundException("Task not found");
     return task;
